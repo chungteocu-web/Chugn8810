@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <algorithm>
+#include <vector>
+using namespace std;
+int main()
+{
+    //dung tri tuyet doi
+    int k;
+    cin >> k;
+    while (k--)
+    {
+        int m, min = 999999999;
+        cin >> m;
+        vector<int> a(m);
+        for (int i = 0; i < m; i++)
+        {
+            cin >> a[i];
+        }
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = i + 1; j < m; j++)
+            {
+                if (abs(a[i] + a[j]) < abs(min))
+                {
+                    min = a[i] + a[j];
+                }
+            }
+        }
+        cout << min << endl;
+    }
+}
