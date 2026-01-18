@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    int c;
+    cin >> c;
+    while (c--)
+    {
+        int a;
+        cin >> a;
+        while (a >= 10)
+        {
+            int sum = 0;
+            while (a != 0)
+            {
+                sum += (a % 10);
+                a /= 10;
+            }
+            a = sum;
+        }
+        cout << a << endl;
+    }
+}
