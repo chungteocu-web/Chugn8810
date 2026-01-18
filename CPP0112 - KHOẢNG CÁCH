@@ -1,0 +1,16 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    int c, count = 0;
+    cin >> c;
+    while (c--)
+    {
+        double a, b, c, d;
+        cin >> a >> b >> c >> d;
+        cout << fixed << setprecision(4) << sqrt(pow(a - c, 2) + pow(d - b, 2)) << endl;
+    }
+}
