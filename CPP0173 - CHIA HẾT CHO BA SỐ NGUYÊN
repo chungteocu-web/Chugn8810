@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+long long bc(long long a, long long b)
+{
+    long long tmp1 = a, tmp2 = b;
+    while (b != 0)
+    {
+        long long tmp = a % b;
+        a = b;
+        b = tmp;
+    }
+    return tmp1 * tmp2 / a;
+}
+int main()
+{
+    int m;
+    cin >> m;
+    while (m--)
+    {
+        long long a, b, c, d;
+        cin >> a >> b >> c >> d;
+        long long bc3so = bc(bc(a, b), c);
+        long long e = pow(10, d - 1);
+        if (pow(10, d) < bc3so)
+        {
+            cout << "-1\n";
+        }
+        else
+        {
+            long long tmp = e % bc3so;
+            long long tmp1 = e + bc3so - tmp;
+            if (tmp == 0)
+            {
+                cout << e << endl;
+            }
+            else
+            {
+                cout << tmp1 << endl;
+            }
+        }
+    }
+}
