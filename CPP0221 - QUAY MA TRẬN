@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int m;
+    cin >> m;
+    while (m--)
+    {
+        int a, b;
+        cin >> a >> b;
+        int A[a][b];
+        int res[a][b];
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < b; j++)
+            {
+                cin >> A[i][j];
+                res[i][j] = A[i][j];
+            }
+        }
+        int h1 = 0, h2 = a - 1, c1 = 0, c2 = b - 1;
+        while (h1 <= h2 && c1 <= c2)
+        {
+            for (int i = c1 + 1; i <= c2; i++)
+            {
+                res[h1][i] = A[h1][i - 1];
+            }
+
+            for (int i = h1 + 1; i <= h2; i++)
+            {
+                res[i][c2] = A[i - 1][c2];
+            }
+            for (int i = c2 - 1; i >= c1; i--)
+            {
+                res[h2][i] = A[h2][i + 1];
+            }
+
+            for (int i = h2 - 1; i >= h1; i--)
+            {
+                res[i][c1] = A[i + 1][c1];
+            }
+            c2--;
+            h1++;
+            h2--;
+            c1++;
+        }
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < b; j++)
+            {
+                cout << res[i][j] << " ";
+            }
+        }
+        cout << endl;
+    }
+}
