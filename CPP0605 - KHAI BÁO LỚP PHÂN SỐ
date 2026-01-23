@@ -1,0 +1,51 @@
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include <string>
+#include <sstream>
+using namespace std;
+class PhanSo
+{
+private:
+    long long a, b;
+
+public:
+    PhanSo(long long tu = 1, long long mau = 1);
+    friend ostream &operator<<(ostream &out, PhanSo &p);
+    friend istream &operator>>(istream &in, PhanSo &p);
+    void rutgon();
+};
+PhanSo::PhanSo(long long tu, long long mau)
+{
+    this->a = tu;
+    this->b = mau;
+}
+ostream &operator<<(ostream &out, PhanSo &p)
+{
+    out << p.a << "/" << p.b;
+    return out;
+}
+istream &operator>>(istream &in, PhanSo &p)
+{
+    in >> p.a >> p.b;
+    return in;
+}
+void PhanSo::rutgon()
+{
+    long long c = this->a, d = this->b;
+    while (d != 0)
+    {
+        long long tmp = c % d;
+        c = d;
+        d = tmp;
+    }
+    this->a /= c;
+    this->b /= c;
+}
+int main() {
+	PhanSo p(1,1);
+	cin >> p;
+	p.rutgon();
+	cout << p;
+	return 0;
+}
