@@ -12,6 +12,7 @@ struct SinhVien
 };
 void nhap(SinhVien ds[50], int n)
 {
+    cin.ignore();
     for (int i = 0; i < n; i++)
     {
         getline(cin, ds[i].ten);
@@ -43,7 +44,6 @@ int main()
     struct SinhVien ds[50];
     int N;
     cin >> N;
-    cin.ignore();
     nhap(ds, N);
     in(ds, N);
     return 0;
