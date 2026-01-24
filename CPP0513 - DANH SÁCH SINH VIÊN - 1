@@ -1,0 +1,50 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <vector>
+#include <string>
+#include <sstream>
+using namespace std;
+struct SinhVien
+{
+    string ten, masv, ngaysinh;
+    float GPA;
+};
+void nhap(SinhVien ds[50], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        getline(cin, ds[i].ten);
+        cin >> ds[i].masv >> ds[i].ngaysinh >> ds[i].GPA;
+        cin.ignore(1);
+    }
+}
+void in(SinhVien ds[50], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (i < 9)
+            cout << "B20DCCN00";
+        else
+            cout << "B20DCCN0";
+        if (ds[i].ngaysinh[1] == '/')
+        {
+            ds[i].ngaysinh.insert(0, 1, '0');
+        }
+        if (ds[i].ngaysinh[4] == '/')
+        {
+            ds[i].ngaysinh.insert(3, 1, '0');
+        }
+        cout << i + 1 << " " << ds[i].ten << " " << ds[i].masv << " " << ds[i].ngaysinh << " " << fixed << setprecision(2) << ds[i].GPA << endl;
+    }
+}
+int main()
+{
+    struct SinhVien ds[50];
+    int N;
+    cin >> N;
+    cin.ignore();
+    nhap(ds, N);
+    in(ds, N);
+    return 0;
+}
