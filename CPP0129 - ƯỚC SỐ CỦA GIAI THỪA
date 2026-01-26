@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    int m;
+    cin >> m;
+    while (m--)
+    {
+        long long a, b, ketqua = 0;
+        cin >> a >> b;
+        for (long long i = 2; i <= a; i++)
+        {
+            long long m = i;
+            while (m % b == 0)
+            {
+                ketqua++;
+                m /= b;
+            }
+        }
+        cout << ketqua << endl;
+    }
+}
