@@ -1,0 +1,70 @@
+#include <iostream>
+#include <map>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <sstream>
+using namespace std;
+int check = 1;
+class GiaoVien
+{
+public:
+    string ma, ten, mon, bomon;
+    vector<string> tachten;
+    friend istream &operator>>(istream &in, GiaoVien &a)
+    {
+        vector<string> xau;
+        string tmp;
+        if (check < 10)
+            a.ma = ("GV0");
+        else
+            a.ma = "GV";
+        a.ma += to_string(check++);
+        in >> ws;
+        getline(in, a.ten);
+        getline(in, a.mon);
+        stringstream ss1(a.ten);
+        while (ss1 >> tmp)
+        {
+            a.tachten.push_back(tmp);
+        }
+        stringstream ss2(a.mon);
+        while (ss2 >> tmp)
+        {
+            xau.push_back(tmp);
+        }
+        for (int i = 0; i < xau.size(); i++)
+        {
+            a.bomon += toupper(xau[i][0]);
+        }
+        return in;
+    }
+    friend ostream &operator<<(ostream &out, const GiaoVien &a)
+    {
+        out << a.ma << " " << a.ten << " " << a.bomon << endl;
+        return out;
+    }
+    friend bool cmp(const GiaoVien &a, const GiaoVien &b);
+};
+bool cmp(const GiaoVien &a, const GiaoVien &b)
+{
+    if (a.tachten[a.tachten.size() - 1] == b.tachten[b.tachten.size() - 1])
+        return a.ma < b.ma;
+    else
+        return a.tachten[a.tachten.size() - 1] < b.tachten[b.tachten.size() - 1];
+}
+int main()
+{
+    int n, m;
+    cin >> n;
+    GiaoVien ds[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> ds[i];
+    }
+    sort(ds, ds + n, cmp);
+    for (int i = 0; i < n; i++)
+    {
+        cout << ds[i];
+    }
+}
