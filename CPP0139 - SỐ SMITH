@@ -1,0 +1,77 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <iomanip>
+#include <sstream>
+using namespace std;
+int prime(int n)
+{
+    if (n < 2)
+        return 0;
+    for (int i = 2; i * i <= n; i++)
+    {
+        if (n % i == 0)
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int m;
+        cin >> m;
+        int tongchuso = 0, tonguoc = 0;
+        if (prime(m))
+        {
+            cout << "NO\n";
+            continue;
+        }
+        else
+        {
+            int k = m;
+            for (int i = 2; i * i <= m; i++)
+            {
+
+                while (m % i == 0)
+                {
+                    int c = i;
+                    while (c != 0)
+                    {
+                        tonguoc += c % 10;
+                        c /= 10;
+                    }
+                    m /= i;
+                }
+            }
+            if (m > 1)
+            {
+                int c = m;
+                while (c != 0)
+                {
+                    tonguoc += c % 10;
+                    c /= 10;
+                }
+            }
+            while (k != 0)
+            {
+                tongchuso += k % 10;
+                k /= 10;
+            }
+            if (tongchuso == tonguoc)
+            {
+                cout << "YES\n";
+            }
+            else
+            {
+                cout << "NO\n";
+            }
+        }
+    }
+}
