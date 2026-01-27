@@ -1,0 +1,40 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <sstream>
+using namespace std;
+vector<int> ds;
+map<int, int> mp;
+bool sosanh(int i, int j)
+{
+    return mp[i] < mp[j];
+}
+int main()
+{
+    int m;
+    cin >> m;
+    while (m--)
+    {
+        int a, b, tmp;
+        cin >> a >> b;
+        for (int i = 0; i < a; i++)
+        {
+            cin >> tmp;
+            ds.push_back(tmp);
+        }
+        for (int i = 0; i < ds.size(); i++)
+        {
+            mp[ds[i]] = abs(b - ds[i]);
+        }
+       stable_sort(ds.begin(), ds.end(), sosanh);
+        for (int i = 0; i < ds.size(); i++)
+        {
+            cout << ds[i] << " ";
+        }
+        cout << endl;
+        ds.clear();
+        mp.clear();
+    }
+}
